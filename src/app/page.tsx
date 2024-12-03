@@ -1,8 +1,10 @@
 import { createDB } from "../lib/db";
 import Link from "next/link";
+import { LoginAuth } from "../lib/Auth";
 
 export default async function Home() {
   const db = createDB();
+  const userId = LoginAuth();
 
   const posts = await db
     .selectFrom("posts")
@@ -21,7 +23,7 @@ export default async function Home() {
             </Link>
             <Link href={`/user/${p.userId}`}>
               {p.userId}
-              {p.userId === 1 ? " *" : ""}
+              {p.userId === userId ? " *" : ""}
             </Link>
           </div>
         </div>

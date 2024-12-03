@@ -1,13 +1,15 @@
 import { createDB } from "../../../lib/db";
 import Link from "next/link";
+import { LoginAuth } from "../../../lib/Auth";
 
 export default async function UserPosts() {
   const db = createDB();
 
+  const userId = LoginAuth();
   const posts = await db
     .selectFrom("posts")
     .selectAll()
-    .where("userId", "=", 1)
+    .where("userId", "=", userId)
     .orderBy("createdAt desc")
     .execute();
 

@@ -1,13 +1,16 @@
-import { createDB } from "../../lib/db";
 import Link from "next/link";
+import { createDB } from "../../lib/db";
+import { LoginAuth } from "../../lib/Auth";
 
 export default async function UserProfile() {
+  const userId = LoginAuth();
+
   const db = createDB();
 
   const user = await db
     .selectFrom("users")
     .selectAll()
-    .where("id", "=", 1)
+    .where("id", "=", userId)
     .executeTakeFirstOrThrow();
 
   return (

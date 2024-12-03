@@ -43,6 +43,9 @@ export default function RootLayout({
               <li>
                 <Link href="/profile">Profile</Link>
               </li>
+              <li>
+                <Link href="/auth/login">Login</Link>
+              </li>
             </ul>
           </div>
         </div>
